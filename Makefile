@@ -17,3 +17,7 @@ rm:
 	-docker rm ab2
 
 stop-rm: stop rm
+
+push:
+	docker push fenyoa/angrybirds2-arena-hack
+
