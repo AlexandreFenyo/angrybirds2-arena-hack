@@ -1,0 +1,25 @@
+apk add --no-cache strace
+/usr/sbin/httpd -f /etc/apache2/httpd.conf -DFOREGROUND
+
+GET /cgi-bin/index.cgi HTTP/1.1
+Host: hack.com
+
+telnet localhost 3130
+GET http://d061c0b64af5/cgi-bin/index.cgi HTTP/1.1
+Host: d061c0b64af5
+
+telnet localhost 3130
+GET http://hack/cgi-bin/index.cgi HTTP/1.1
+Host: hack
+
+telnet localhost 3130
+GET http://hack.com/cgi-bin/index.cgi HTTP/1.1
+Host: hack.com
+
+
+telnet localhost 8080
+GET /cgi-bin/index.cgi HTTP/1.1
+Host: hack.com
+
+
+
