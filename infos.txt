@@ -23,3 +23,33 @@ Host: hack.com
 
 
 
+
+
+<html>
+
+  <head>
+    <script type="text/javascript">
+      var xhr = new XMLHttpRequest()
+      xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+      document.getElementById("msg").innerHTML = xhr.responseText
+      }
+      function loop() {
+      xhr.open("GET", "msg.txt", true)
+      xhr.send(null)
+      setTimeout(loop, 500)
+      }
+    </script>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      setTimeout(loop, 500)
+    </script>
+
+    body
+
+    <b id="msg">message</b>
+   
+  </body>
+</html>
