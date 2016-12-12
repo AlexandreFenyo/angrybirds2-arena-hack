@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+# states: Play => Stop
+#         Stop => Play
+#         Play => Timewarp => Play
+
 timewarp=$(cat /tmp/timewarp)
 
 if [ "$PATH_INFO" = "" ]
@@ -33,14 +37,26 @@ echo '
     body
 
     <b id="msg">XmessageY</b>
-<a href="http://hack.com/cgi-bin/index.cgi/P">play</a>
+'
+
+if [ $(cat /tmp/state) != 'S' ]
+then
+echo '
 <a href="http://hack.com/cgi-bin/index.cgi/S">stop</a>
 <a href="http://hack.com/cgi-bin/index.cgi/T">time warp</a>
-   
+'
+else
+echo '
+<a href="http://hack.com/cgi-bin/index.cgi/P">play</a>
+'    
+fi
+
+echo '
   </body>
 </html>
 '
-    exit 0
+
+exit 0
 fi
 
 if [ "$PATH_INFO" = "/P" ]
@@ -50,6 +66,8 @@ echo Content-type: text/html
 echo Location: http://hack.com/cgi-bin/index.cgi
 echo
 echo -n P > /tmp/state
+cat /tmp/timewarp > /tmp/timewarp.value
+sh -c "sleep .5; pkill python3.5" > /dev/null 2>&1 &
 exit 0
 fi
 
@@ -60,6 +78,8 @@ echo Content-type: text/html
 echo Location: http://hack.com/cgi-bin/index.cgi
 echo
 echo -n S > /tmp/state
+date +%s > /tmp/timewarp.value
+sh -c "sleep .5; pkill python3.5" > /dev/null 2>&1 &
 exit 0
 fi
 
@@ -70,8 +90,5 @@ echo Content-type: text/html
 echo Location: http://hack.com/cgi-bin/index.cgi
 echo
 echo -n T > /tmp/state
-# faire un pg perl qui quand il voit T fait le timewarp et met P
-#echo -n $((timewarp+1)) > /tmp/timewarp
-sh -c "sleep .5; pkill python3.5" > /dev/null 2>&1 &
 exit 0
 fi

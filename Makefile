@@ -11,7 +11,7 @@ run: stop rm
 	docker run -d --name ab2 -it -p 8888:8080 fenyoa/angrybirds2-arena-hack
 
 run-dev: stop rm
-	docker run -d --name ab2 -it -p 8888:8080 -v ${PWD}/index.cgi:/var/www/localhost/cgi-bin/index.cgi fenyoa/angrybirds2-arena-hack
+	docker run -d --name ab2 -it -p 8888:8080 -v ${PWD}/index.cgi:/var/www/localhost/cgi-bin/index.cgi -v ${PWD}/time.sh:/usr/local/bin/time.sh -v ${PWD}/entrypoint.sh:/usr/local/bin/entrypoint.sh fenyoa/angrybirds2-arena-hack
 
 exec:
 	docker exec -it ab2 /bin/zsh
