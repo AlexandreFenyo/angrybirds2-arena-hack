@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-DOCKER=false
+DOCKER=true
 
 while sleep .3
 do
@@ -70,16 +70,16 @@ do
 
 	if [ $delay -lt 0 ]
 	then
-	    echo "you are now -$h:$m:$s in the Past" >> /var/www/localhost/htdocs/msg.txt
+	    echo "you are <b>-$h:$m:$s</b> in the <b>Past</b>" >> /var/www/localhost/htdocs/msg.txt
 	else
-	    echo "you are now +$h:$m:$s in the Future" >> /var/www/localhost/htdocs/msg.txt
+	    echo "you are <b>+$h:$m:$s</b> in the <b>Future</b>" >> /var/www/localhost/htdocs/msg.txt
 	fi
     fi
 
     if [ "$state" = S ]
     then
 	echo "The time control is not activated: you can now exit the Arena<br/>" > /var/www/localhost/htdocs/msg.txt
-	echo "If you click on Play and enter the Arena, you will be $h:$m:$s in the future,<br/>then click on Time Warp to get a free ticket!" >> /var/www/localhost/htdocs/msg.txt
+	echo "If you click on Play and enter the Arena, you will be <b>$h:$m:$s</b> in the future,<br/>then click on Time Warp to get a free ticket!" >> /var/www/localhost/htdocs/msg.txt
     fi
 done
 

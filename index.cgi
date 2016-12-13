@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-DOCKER=false
+DOCKER=true
 
 cat /tmp/timewarp | read timewarp
 
@@ -31,20 +31,29 @@ echo '
     <script type="text/javascript">
       setTimeout(loop, 500)
     </script>
-
+    <center><a href="/"><img border="0" src="/title.png"/></a><br/><font face="verdana" size="-1px">[<a href="/">home - certificate/profile</a>]</font><p/></center>
     <center><font face="verdana" id="msg">wait...</font><br/></center>
 '
 
 if [ $(cat /tmp/state) != 'S' ]
 then
 echo '
-<a href="http://hack.com/cgi-bin/index.cgi/S">stop</a>
-<a href="http://hack.com/cgi-bin/index.cgi/T">time warp</a>
+    <center>
+    <table width="600">
+    <tr><td align="left">
+    <a href="http://hack.com/cgi-bin/index.cgi/S"><img src="/stop.png"/></a>
+    </td><td align="right">
+    <a href="http://hack.com/cgi-bin/index.cgi/T"><img src="/timewarp.png"/></a>
+    </td></tr>
+    </table>
+    </center>
 '
 else
 echo '
-<a href="http://hack.com/cgi-bin/index.cgi/P">play</a>
-'    
+    <center>
+    <a href="http://hack.com/cgi-bin/index.cgi/P"><img src="/play.png"/></a>
+    </center>
+'
 fi
 
 echo '

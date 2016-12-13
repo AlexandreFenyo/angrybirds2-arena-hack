@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-DOCKER=false
+DOCKER=true
 
 if [ $DOCKER = false ]
 then
@@ -12,7 +12,11 @@ MITMPROXY_PATH="/home/mitmproxy/.mitmproxy"
 echo 127.0.0.1 hack hack.com www.hack.com >> /etc/hosts
 
 mkdir -p "$MITMPROXY_PATH"
-chown -R mitmproxy:mitmproxy "$MITMPROXY_PATH"
+cp /tmp/mitmproxy-ca-cert.cer /tmp/mitmproxy-ca-cert.pem /tmp/mitmproxy-dhparam.pem /tmp/mitmproxy-ca-cert.p12 /tmp/mitmproxy-ca.pem "$MITMPROXY_PATH"
+chown -R mitmproxy:mitmproxy "$MITMPROXY_PATH" "$MITMPROXY_PATH"/mitmproxy-ca-cert.cer "$MITMPROXY_PATH"/mitmproxy-ca-cert.pem "$MITMPROXY_PATH"/mitmproxy-dhparam.pem "$MITMPROXY_PATH"/mitmproxy-ca-cert.p12 "$MITMPROXY_PATH"/mitmproxy-ca.pem
+cp "$MITMPROXY_PATH"/mitmproxy-ca-cert.pem /var/www/localhost/htdocs
+chmod 644 /var/www/localhost/htdocs/mitmproxy-ca-cert.pem
+chown mitmproxy:mitmproxy /var/www/localhost/htdocs/mitmproxy-ca-cert.pem
 
 date +%s > /tmp/timewarp
 echo -n 0 > /tmp/timewarp.value
