@@ -1,3 +1,47 @@
+
+Etats :
+P : Play
+S : Stop
+T : timewarp
+
+On commence en P
+
+Depuis P :
+On voit T et S
+- clique sur S :
+  mitm saute à now
+  passe à S
+- clique sur T :
+  passe à T
+bg async :
+  rien : timewarp bloqué à la valeur de mitm
+
+depuis S :
+on voit P
+- clique sur P :
+  mitm saute à timewarp
+  passe à P
+bg async :
+  on décrémente timewarp toutes les secondes jusqu'à bloquer sur now
+
+depuis T :
+on voit S et T
+- clique sur S :
+  mitm saute à now
+  passe à S
+- clique sur T :
+  passe à T
+bg async :
+  on change timewarp : +1h
+  mitm saute à timewarp
+  on passe à P
+
+
+
+
+
+
+
 apk add --no-cache strace
 /usr/sbin/httpd -f /etc/apache2/httpd.conf -DFOREGROUND
 

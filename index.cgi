@@ -1,9 +1,5 @@
 #!/bin/zsh
 
-# states: Play => Stop
-#         Stop => Play
-#         Play => Timewarp => Play
-
 timewarp=$(cat /tmp/timewarp)
 
 if [ "$PATH_INFO" = "" ]
@@ -22,7 +18,7 @@ echo '
       document.getElementById("msg").innerHTML = xhr.responseText
       }
       function loop() {
-      xhr.open("GET", "/msg.txt", true)
+      xhr.open("GET", "/msg2.txt", true)
       xhr.send(null)
       setTimeout(loop, 500)
       }
@@ -78,7 +74,7 @@ echo Content-type: text/html
 echo Location: http://hack.com/cgi-bin/index.cgi
 echo
 echo -n S > /tmp/state
-date +%s > /tmp/timewarp.value
+echo -n 0 > /tmp/timewarp.value
 sh -c "sleep .5; pkill python3.5" > /dev/null 2>&1 &
 exit 0
 fi
