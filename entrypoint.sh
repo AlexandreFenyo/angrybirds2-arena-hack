@@ -1,7 +1,11 @@
 #!/bin/zsh
 
-# a enlever dans docker
-export PYTHONHOME=/usr/local/ansible:/usr/local/ansible/bin:/home/fenyo/install/apache-maven-3.3.9/bin:/usr/sbin:/usr/bin:/sbin:/bin
+DOCKER=false
+
+if [ $DOCKER = false ]
+then
+    export PYTHONHOME=/usr/local/ansible:/usr/local/ansible/bin:/home/fenyo/install/apache-maven-3.3.9/bin:/usr/sbin:/usr/bin:/sbin:/bin
+fi
 
 MITMPROXY_PATH="/home/mitmproxy/.mitmproxy"
 
@@ -11,35 +15,32 @@ mkdir -p "$MITMPROXY_PATH"
 chown -R mitmproxy:mitmproxy "$MITMPROXY_PATH"
 
 date +%s > /tmp/timewarp
-echo 0 > /tmp/timewarp.value
+echo -n 0 > /tmp/timewarp.value
 chown mitmproxy:mitmproxy /tmp/timewarp /tmp/timewarp.value
 
 echo -n S > /tmp/state
 chown mitmproxy:mitmproxy /tmp/state
 
-touch > /var/www/localhost/htdocs/msg.txt
+touch /var/www/localhost/htdocs/msg.txt
 chown mitmproxy:mitmproxy /var/www/localhost/htdocs/msg.txt
 
 /usr/sbin/httpd -f /etc/apache2/httpd.conf
 
-# a remettre avec docker
-# nohup /usr/local/bin/time.sh > /dev/null 2>&1 &
+if [ $DOCKER = true ]
+then
+    nohup /usr/local/bin/time.sh > /dev/null 2>&1 &
+fi
 
 while sleep .2
 do
-    timewarp=$(cat /tmp/timewarp.value)
+    cat /tmp/timewarp.value | read timewarp
 
     if [ $timewarp -eq 0 ]
     then
-# a remettre en docker
-	su-exec wwwrun mitmproxy
-#	su-exec mitmproxy mitmproxy
+	su-exec wwwrun mitmproxy >> /tmp/res 2>&1
     else
-# a remettre en docker
 	su-exec wwwrun mitmproxy --replace '&https://cloud.rovio.com/identity/2.0/time&({"time":.*?)[0-9]*}&\g<1>'$timewarp'}'
-#	su-exec mitmproxy mitmproxy --replace '&https://cloud.rovio.com/identity/2.0/time&({"time":.*?)[0-9]*}&\g<1>'$timewarp'}'
     fi
-
-    
-#    su-exec mitmproxy mitmproxy --replace '&https://cloud.rovio.com/identity/2.0/time&({"time":.*?)[0-9]*}&\g<1>'$(($(date +%s)+$timewarp*3600))'}'
 done
+
+exit 1

@@ -1,11 +1,14 @@
 #!/bin/zsh
 
-timewarp=$(cat /tmp/timewarp)
+DOCKER=false
+
+cat /tmp/timewarp | read timewarp
 
 if [ "$PATH_INFO" = "" ]
 then
     echo Content-type: text/html
     echo
+
 echo '
 <html>
 
@@ -29,7 +32,7 @@ echo '
       setTimeout(loop, 500)
     </script>
 
-    <b id="msg">XmessageY</b>
+    <center><font face="verdana" id="msg">wait...</font><br/></center>
 '
 
 if [ $(cat /tmp/state) != 'S' ]
@@ -44,8 +47,6 @@ echo '
 '    
 fi
 
-id
-
 echo '
   </body>
 </html>
@@ -56,36 +57,51 @@ fi
 
 if [ "$PATH_INFO" = "/P" ]
 then
-
-echo Content-type: text/html
-echo Location: http://hack.com/cgi-bin/index.cgi
-echo
-echo -n P > /tmp/state
-cat /tmp/timewarp > /tmp/timewarp.value
-# a remettre avec docker
-# sh -c "sleep .5; pkill python3.5" > /dev/null 2>&1 &
-sh -c "sleep .5; pkill mitmproxy" > /dev/null 2>&1 &
-exit 0
+    echo Content-type: text/html
+    echo Location: http://hack.com/cgi-bin/index.cgi
+    echo
+    echo -n P > /tmp/state
+    cat /tmp/timewarp > /tmp/timewarp.value
+    if [ $DOCKER = true ]
+    then
+	sh -c "sleep .5; pkill python3.5" > /dev/null 2>&1 &
+    else
+	sh -c "sleep .5; pkill mitmproxy" > /dev/null 2>&1 &
+    fi
+    exit 0
 fi
 
 if [ "$PATH_INFO" = "/S" ]
 then
-echo Content-type: text/html
-echo Location: http://hack.com/cgi-bin/index.cgi
-echo
-echo -n S > /tmp/state
-echo 0 > /tmp/timewarp.value
-# a remettre avec docker
-# sh -c "sleep .5; pkill python3.5" > /dev/null 2>&1 &
-sh -c "sleep .5; pkill mitmproxy" > /dev/null 2>&1 &
-exit 0
+    echo Content-type: text/html
+    echo Location: http://hack.com/cgi-bin/index.cgi
+    echo
+    echo -n S > /tmp/state
+    echo -n 0 > /tmp/timewarp.value
+    if [ $DOCKER = true ]
+    then
+	sh -c "sleep .5; pkill python3.5" > /dev/null 2>&1 &
+    else
+	sh -c "sleep .5; pkill mitmproxy" > /dev/null 2>&1 &
+    fi
+    exit 0
 fi
 
 if [ "$PATH_INFO" = "/T" ]
 then
-echo Content-type: text/html
-echo Location: http://hack.com/cgi-bin/index.cgi
-echo
-echo -n T > /tmp/state
-exit 0
+    echo Content-type: text/html
+    echo Location: http://hack.com/cgi-bin/index.cgi
+    echo
+    echo -n T > /tmp/state
+    exit 0
+fi
+
+# debug the time warp
+if [ "$PATH_INFO" = "/D" ]
+then
+    echo Content-type: text/html
+    echo Location: http://hack.com/cgi-bin/index.cgi
+    echo
+    echo -n D > /tmp/state
+    exit 0
 fi

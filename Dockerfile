@@ -1,4 +1,5 @@
 From mitmproxy/mitmproxy
+EXPOSE 8080
 RUN apk add --no-cache zsh
 RUN apk add --no-cache perl
 RUN apk add --no-cache apache2
