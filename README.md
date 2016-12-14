@@ -99,7 +99,5 @@ To come back in the present, click on Stop:
 
 Now, you can exit the Arena and play levels.<br/>
 The hack continues to run but it does not change the real time.
-<br/><img border="1" src="usage/IMG_1060.jpg" width="600"/>
 <p/>
-
 <b>Whenever you want to enter the Arena again, do not forget to click on Play.</b>
