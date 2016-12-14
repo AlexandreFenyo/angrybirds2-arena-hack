@@ -3,11 +3,11 @@ Do not wait anymore for arena tickets: works on iPad, iPhone and Android !
 
 Available here on Dockerhub: https://hub.docker.com/r/fenyoa/angrybirds2-arena-hack/
 
-      In the Wi-Fi settings:<br/>
-      - set the proxy to the host on which you have launched the Docker container;<br/>
-      - set the port to the one the container is listening (8080).
-      <br/><img src="usage/IMG_1020.jpg" width="600"/>
-      <p/>
+In the Wi-Fi settings:<br/>
+- set the proxy to the host on which you have launched the Docker container;<br/>
+- set the port to the one the container is listening (8080).
+<br/><img src="usage/IMG_1020.jpg" width="600"/>
+<p/>
 
       Run Safari and connect to <b>http://my.hack/</b>
       <br/><img src="usage/IMG_1022.jpg" width="600"/>
