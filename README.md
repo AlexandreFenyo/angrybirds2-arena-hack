@@ -3,19 +3,14 @@ Do not wait anymore for arena tickets: works on iPad, iPhone and Android !
 
 Available here on Dockerhub: https://hub.docker.com/r/fenyoa/angrybirds2-arena-hack/
 
-<html>
-  <head>
-  </head>
-  <body>
-    <font face="verdana" size="-1">
       In the Wi-Fi settings:<br/>
       - set the proxy to the host on which you have launched the Docker container;<br/>
       - set the port to the one the container is listening (8080).
-      <br/><img src="IMG_1020.jpg" width="600"/>
+      <br/><img src="usage/IMG_1020.jpg" width="600"/>
       <p/>
 
       Run Safari and connect to <b>http://my.hack/</b>
-      <br/><img src="IMG_1022.jpg" width="600"/>
+      <br/><img src="usage/IMG_1022.jpg" width="600"/>
       <p/>
 
       You should see the following page:
@@ -108,7 +103,3 @@ Available here on Dockerhub: https://hub.docker.com/r/fenyoa/angrybirds2-arena-h
       <p/>
 
       <b>Whenever you want to enter the Arena again, do not forget to click on Play.</b>
-      
-    </font>
-  </body>
-</html>
