@@ -10,7 +10,7 @@ Available here on DockerHub: https://hub.docker.com/r/fenyoa/angrybirds2-arena-h
 
 In the Wi-Fi settings:<br/>
 set the proxy to the host on which you have launched the Docker container;<br/>
-set the port to the one the container is listening (8080).
+set the port to the one the container is listening on (8080).
 <br/><img src="usage/IMG_1020.jpg" width="600"/>
 <p/>
 
