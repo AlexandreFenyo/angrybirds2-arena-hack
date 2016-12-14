@@ -7,7 +7,7 @@ then
     export PYTHONHOME=/usr/local/ansible:/usr/local/ansible/bin:/home/fenyo/install/apache-maven-3.3.9/bin:/usr/sbin:/usr/bin:/sbin:/bin
 fi
 
-MITMPROXY_PATH="/home/mitmproxy/.mitmproxy"
+MITMPROXY_PATH="/root/.mitmproxy"
 
 echo 127.0.0.1 hack hack.com www.hack.com >> /etc/hosts
 

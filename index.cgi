@@ -31,7 +31,7 @@ echo '
     <script type="text/javascript">
       setTimeout(loop, 500)
     </script>
-    <center><a href="/"><img border="0" src="/title.png"/></a><br/><font face="verdana" size="-1px">[<a href="/">home - certificate/profile</a>]</font><p/></center>
+    <center><a href="/"><img border="0" src="/title.png"/></a><br/><font face="verdana" size="-1px">[<a href="/">home - root certificate (Apple profile)</a>]</font><p/></center>
     <center><font face="verdana" id="msg">wait...</font><br/></center>
 '
 
