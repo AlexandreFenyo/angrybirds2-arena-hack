@@ -7,7 +7,7 @@ then
     export PYTHONHOME=/usr/local/ansible:/usr/local/ansible/bin:/home/fenyo/install/apache-maven-3.3.9/bin:/usr/sbin:/usr/bin:/sbin:/bin
 fi
 
-MITMPROXY_PATH="/root/.mitmproxy"
+MITMPROXY_PATH="/home/mitmproxy/.mitmproxy"
 
 echo 127.0.0.1 hack hack.com www.hack.com >> /etc/hosts
 
@@ -35,15 +35,22 @@ then
     nohup /usr/local/bin/time.sh > /dev/null 2>&1 &
 fi
 
+if [ $DOCKER = true ]
+then
+     user=mitmproxy
+else
+     user=wwwrun
+fi
+
 while sleep .2
 do
     cat /tmp/timewarp.value | read timewarp
 
     if [ $timewarp -eq 0 ]
     then
-	su-exec wwwrun mitmproxy >> /tmp/res 2>&1
+	su-exec $user mitmproxy >> /tmp/res 2>&1
     else
-	su-exec wwwrun mitmproxy --replace '&https://cloud.rovio.com/identity/2.0/time&({"time":.*?)[0-9]*}&\g<1>'$timewarp'}'
+	su-exec $user mitmproxy --replace '&https://cloud.rovio.com/identity/2.0/time&({"time":.*?)[0-9]*}&\g<1>'$timewarp'}'
     fi
 done
 
