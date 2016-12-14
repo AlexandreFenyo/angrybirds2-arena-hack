@@ -1,1 +1,0 @@
-echo -n $(( $(cat /tmp/timewarp) + 528*86400 )) > /tmp/timewarp ; pkill python3.5
