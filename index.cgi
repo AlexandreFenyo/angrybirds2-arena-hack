@@ -41,17 +41,19 @@ echo '
     <center>
     <table width="600">
     <tr><td align="left">
-    <a href="http://hack.com/cgi-bin/index.cgi/S"><img src="/stop.png"/></a>
+    <a href="http://my.hack/cgi-bin/index.cgi/S"><img src="/stop.png"/></a>
     </td><td align="right">
-    <a href="http://hack.com/cgi-bin/index.cgi/T"><img src="/timewarp.png"/></a>
+    <a href="http://my.hack/cgi-bin/index.cgi/T"><img src="/timewarp.png"/></a>
     </td></tr>
     </table>
+<p/>
+<font face="verdana" size="-1px">click <a href="http://my.hack/cgi-bin/index.cgi/U">here</a> to finish the Arena challenge right now</font>
     </center>
 '
 else
 echo '
     <center>
-    <a href="http://hack.com/cgi-bin/index.cgi/P"><img src="/play.png"/></a>
+    <a href="http://my.hack/cgi-bin/index.cgi/P"><img src="/play.png"/></a>
     </center>
 '
 fi
@@ -67,7 +69,7 @@ fi
 if [ "$PATH_INFO" = "/P" ]
 then
     echo Content-type: text/html
-    echo Location: http://hack.com/cgi-bin/index.cgi
+    echo Location: http://my.hack/cgi-bin/index.cgi
     echo
     echo -n P > /tmp/state
     cat /tmp/timewarp > /tmp/timewarp.value
@@ -83,7 +85,7 @@ fi
 if [ "$PATH_INFO" = "/S" ]
 then
     echo Content-type: text/html
-    echo Location: http://hack.com/cgi-bin/index.cgi
+    echo Location: http://my.hack/cgi-bin/index.cgi
     echo
     echo -n S > /tmp/state
     echo -n 0 > /tmp/timewarp.value
@@ -99,9 +101,18 @@ fi
 if [ "$PATH_INFO" = "/T" ]
 then
     echo Content-type: text/html
-    echo Location: http://hack.com/cgi-bin/index.cgi
+    echo Location: http://my.hack/cgi-bin/index.cgi
     echo
     echo -n T > /tmp/state
+    exit 0
+fi
+
+if [ "$PATH_INFO" = "/U" ]
+then
+    echo Content-type: text/html
+    echo Location: http://my.hack/cgi-bin/index.cgi
+    echo
+    echo -n U > /tmp/state
     exit 0
 fi
 
@@ -109,7 +120,7 @@ fi
 if [ "$PATH_INFO" = "/D" ]
 then
     echo Content-type: text/html
-    echo Location: http://hack.com/cgi-bin/index.cgi
+    echo Location: http://my.hack/cgi-bin/index.cgi
     echo
     echo -n D > /tmp/state
     exit 0

@@ -9,7 +9,7 @@ fi
 
 MITMPROXY_PATH="/home/mitmproxy/.mitmproxy"
 
-echo 127.0.0.1 hack hack.com www.hack.com >> /etc/hosts
+echo 127.0.0.1 my.hack >> /etc/hosts
 
 mkdir -p "$MITMPROXY_PATH"
 cp /tmp/mitmproxy-ca-cert.cer /tmp/mitmproxy-ca-cert.pem /tmp/mitmproxy-dhparam.pem /tmp/mitmproxy-ca-cert.p12 /tmp/mitmproxy-ca.pem "$MITMPROXY_PATH"

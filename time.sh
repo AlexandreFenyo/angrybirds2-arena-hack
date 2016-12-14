@@ -45,6 +45,21 @@ do
 	fi
     fi
 
+    # user wants to win Arena challenge
+    if [ "$state" = U ]
+    then
+        echo -n $(( $(cat /tmp/timewarp) + 3600*24*7 )) > /tmp/timewarp
+        echo -n P > /tmp/state
+        cat /tmp/timewarp > /tmp/timewarp.value
+
+        if [ $DOCKER = true ]
+        then
+            sh -c "sleep .5; pkill python3.5" > /dev/null 2>&1 &
+        else
+            sh -c "sleep .5; pkill mitmproxy" > /dev/null 2>&1 &
+        fi
+    fi
+
     date +%s | read now
     cat /tmp/timewarp | read timewarp
     delay=$(( $timewarp - $now ))
@@ -58,7 +73,7 @@ do
     printf "%02d" $((($abs - $h*3600) / 60 )) | read m
     printf "%02d" $(($abs - $h*3600 - $m*60)) | read s
 
-    if [ "$state" = T ]
+    if [ "$state" = T -o "$state" = U ]
     then
 	echo "please wait" > /var/www/localhost/htdocs/msg.txt
     fi
