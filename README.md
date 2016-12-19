@@ -2,7 +2,7 @@
 ![hack](https://raw.githubusercontent.com/AlexandreFenyo/angrybirds2-arena-hack/master/title.png)
 
 # angrybirds2-arena-hack
-Do not wait anymore for arena tickets: works on iPad, iPhone and Android !
+Do not wait anymore for arena tickets: works on iPad, iPhone and Android ! No jailbreak needed !
 
 Available here on DockerHub: https://hub.docker.com/r/fenyoa/angrybirds2-arena-hack/
 
